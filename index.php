@@ -1,3 +1,14 @@
+<?php
+    include_once "bd/conexion.php";
+    $objeto = new Conexion();
+    $conexion = $objeto->Conectar();
+
+    $consulta = "SELECT * FROM licencias";
+    $resultado = $conexion->prepare($consulta);
+    $resultado->execute();
+    $licencias = $resultado->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <!doctype html>
 <html lang="es">
 
@@ -38,9 +49,26 @@
                     <th>Fecha de Vencimiento</th>
                     <th>Estado de Renovacion</th>
                     <th>Status</th>
-                    <th>Acciones</th>
+                    <!--<th>Acciones</th>-->
                 </tr>
             </thead>
+            <tbody>
+                <?php
+                    foreach ($licencias as $licencias) {
+                    ?>
+                <tr>
+                    <td><?php echo $licencias["id_dominio"]?></td>
+                    <td><?php echo $licencias["nombre_dominio"]?></td>
+                    <td><?php echo $licencias["fecha_registro"]?></td>
+                    <td><?php echo $licencias["fecha_vencimiento"]?></td>
+                    <td><?php echo $licencias["estado_renovacion"]?></td>
+                    <td><?php echo $licencias["status"]?></td>
+                </tr>
+                <?php
+                    }
+                ?>
+            </tbody>
+            <!--
             <tbody>
                 <tr>
                     <td></td>
@@ -63,7 +91,7 @@
                     </td>
                 </tr>
             </tbody>
-            <!--
+            
             <tfoot>
                 <tr>
                     <th>Name</th>

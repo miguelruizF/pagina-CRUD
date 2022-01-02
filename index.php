@@ -37,7 +37,7 @@
 
     <!-- DataTable -->
     <section class="container">
-        <button id="btn_nuevo" class="btn btn-primary mb-4 btnNuevo">
+        <button id="btn_nuevo" class="btn btn-dark mb-4 btnNuevo">
                 Agregar
             </button>
         <table id="tb_licencias" class="table table-striped table-bordered table-dark" style="width:100%">
@@ -49,7 +49,7 @@
                     <th>Fecha de Vencimiento</th>
                     <th>Estado de Renovacion</th>
                     <th>Status</th>
-                    <!--<th>Acciones</th>-->
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -63,6 +63,7 @@
                     <td><?php echo $licencias["fecha_vencimiento"]?></td>
                     <td><?php echo $licencias["estado_renovacion"]?></td>
                     <td><?php echo $licencias["status"]?></td>
+                    <td></td>
                 </tr>
                 <?php
                     }
@@ -123,7 +124,7 @@
                         </div>
                         <div class="form-group">
                             <label for="fecha-registro" class="col-form-label">Fecha de Registro:</label>
-                            <input type="text" class="form-control" id="fecha-registro">
+                            <input type="date" class="form-control" id="fecha-registro">
                         </div>
                         <div class="form-group">
                             <label for="fecha-vencimiento" class="col-form-label">Fecha de Vencimiento:</label>
@@ -131,7 +132,7 @@
                         </div>
                         <div class="form-group">
                             <label for="estado" class="col-form-label">Estado Renovacion:</label>
-                            <input type="date" class="form-control" id="estado">
+                            <input type="text" class="form-control" id="estado">
                         </div>
                         <div class="form-group">
                             <label for="status" class="col-form-label">Status:</label>
@@ -157,16 +158,6 @@
     <!-- Archivo JavaScript -->
     <script src="js/main.js"></script>
 
-    <!-- Inicializar DataTables -->
-    <script>
-        $(document).ready(function() {
-            $("#tb_licencias").DataTable({
-                "language": {
-                    "url": "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
-                }
-            });
-        });
-    </script>
 </body>
 
 </html>

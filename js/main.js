@@ -5,9 +5,9 @@ $(document).ready(function() {
             "url": "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
         },
         "columnDefs": [{ //Se definen los botones de editar y borrar de manera dinamica
-            "target": -1,
+            "targets": -1,
             "data": null,
-            "defaulContent": '<div class="text-center"><div class="btn-group"><button class="btn btn-primary btnEditar">Editar</button><button class="btn btn-danger btnBorrar">Eliminar</button></div></div>'
+            "defaulContent": '' /*'<div class="text-center"><div class="btn-group"><button class="btn btn-primary btnEditar">Editar</button><button class="btn btn-danger btnBorrar">Eliminar</button></div></div>'*/
         }]
     });
     $("#btn_nuevo").click(function() {
@@ -17,31 +17,33 @@ $(document).ready(function() {
 
         $("#formLicencias").trigger("reset"); //Resetea los input del form
         $("#modalCrud").modal("show"); //Mostrar ventana modal
+
+        id = null;
     });
 
     $("#formLicencias").submit(function(e) {
         e.preventDefault(); //Previene acciones por defecto
-        id_dom = $.trim($("#id").value());
-        nom_dominio = $.trim($("#licencia-url").value());
-        fecha_registro = $.trim($("#fecha-registro").value());
-        fecha_vencimiento = $.trim($("#fecha-vencimiento").value());
-        estado_dom = $.trim($("#estado").value());
-        status_dom = $.trim($("#status").value());
+        id = $.trim($("#id").val());
+        nombre = $.trim($("#url_dom").val());
+        f_inicio = $.trim($("#f_registro").val());
+        f_final = $.trim($("#f_vencimiento").val());
+        estado = $.trim($("#estado").val());
+        status_dom = $.trim($("#status").val());
 
         $.ajax({
             url: "bd/crud.php",
             type: "POST",
-            datatype: "json",
-            data: [id_dom, nom_dominio, fecha_registro, fecha_vencimiento, estado_dom, status_dom],
+            dataType: "json",
+            data: { id: id, nombre: nombre, f_inicio: f_inicio, f_final: f_final, estado: estado, status_dom: status_dom },
             success: function(data) {
-                var datos = JSON.parse(data);
-                id_dom = datos[0].id_dom,
-                    nom_dominio = datos[0].nom_dominio,
-                    fecha_registro = datos[0].fecha_registro,
-                    fecha_vencimiento = datos[0].fecha_vencimiento,
-                    estado_dom = datos[0].estado_dom,
-                    status_dom = datos[0].status_dom,
-                    table.row.add([id_dom, nom_dominio, fecha_registro, fecha_vencimiento, estado_dom, status_dom]).draw();
+                //var datos = JSON.parse(data);
+                id = data[0].id;
+                nombre = data[0].nombre;
+                f_inicio = data[0].f_inicio;
+                f_final = data[0].f_final;
+                estado = data[0].estado;
+                status_dom = data[0].status_dom;
+                table.row.add([id, nombre, f_inicio, f_final, estado, status_dom]).draw();
             }
         });
         $("#modalCrud").modal("hide");

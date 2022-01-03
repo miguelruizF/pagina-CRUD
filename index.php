@@ -1,3 +1,4 @@
+
 <?php
     include_once "bd/conexion.php";
     $objeto = new Conexion();
@@ -37,74 +38,49 @@
 
     <!-- DataTable -->
     <section class="container">
-        <button id="btn_nuevo" class="btn btn-dark mb-4 btnNuevo">
-                Agregar
-            </button>
-        <table id="tb_licencias" class="table table-striped table-bordered table-dark" style="width:100%">
-            <thead class="bg-primary text-white">
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre de Dominio</th>
-                    <th>Fecha de Registro</th>
-                    <th>Fecha de Vencimiento</th>
-                    <th>Estado de Renovacion</th>
-                    <th>Status</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                    foreach ($licencias as $licencias) {
-                    ?>
-                <tr>
-                    <td><?php echo $licencias["id_dominio"]?></td>
-                    <td><?php echo $licencias["nombre_dominio"]?></td>
-                    <td><?php echo $licencias["fecha_registro"]?></td>
-                    <td><?php echo $licencias["fecha_vencimiento"]?></td>
-                    <td><?php echo $licencias["estado_renovacion"]?></td>
-                    <td><?php echo $licencias["status"]?></td>
-                    <td></td>
-                </tr>
-                <?php
-                    }
-                ?>
-            </tbody>
-            <!--
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <div class="text-center">
-                            <div class="btn-group">
-                                <button class="btn btn-primary btnEditar">
-                                       Editar
-                                    </button>
-                                <button class="btn btn-danger btnBorrar">
-                                        Eliminar
-                                    </button>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-            
-            <tfoot>
-                <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
-                    <th>Salary</th>
-                </tr>
-            </tfoot>
-            -->
-        </table>
+        <div class="row">
+            <div class="col-lg-12">
+                <button id="btn_nuevo" class="btn btn-dark mb-4 btnNuevo">
+                        Agregar
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <table id="tb_licencias" class="table table-striped table-bordered table-dark" style="width:100%">
+                            <thead class="bg-primary text-white">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre de Dominio</th>
+                                    <th>Fecha de Registro</th>
+                                    <th>Fecha de Vencimiento</th>
+                                    <th>Estado de Renovacion</th>
+                                    <th>Status</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    foreach ($licencias as $licencias) {
+                                    ?>
+                                <tr>
+                                    <td><?php echo $licencias["id_dominio"]?></td>
+                                    <td><?php echo $licencias["nombre_dominio"]?></td>
+                                    <td><?php echo $licencias["fecha_registro"]?></td>
+                                    <td><?php echo $licencias["fecha_vencimiento"]?></td>
+                                    <td><?php echo $licencias["estado_renovacion"]?></td>
+                                    <td><?php echo $licencias["status"]?></td>
+                                    <td><div class="text-center"><div class="btn-group"><button class="btn btn-primary btnEditar">Editar</button><button class="btn btn-danger btnBorrar">Eliminar</button></div></div></td>
+                                </tr>
+                                <?php
+                                    }
+                                ?>
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- CRUD - Modal -->
@@ -113,38 +89,46 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="color:white">&times</span>
+                    </button>
                 </div>
 
                 <form id="formLicencias">
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="licencia-url" class="col-form-label">URL del dominio:</label>
-                            <input type="text" class="form-control" id="licencia-url">
+                            <input type="text" class="form-control" id="url_dom" required>
                         </div>
                         <div class="form-group">
                             <label for="fecha-registro" class="col-form-label">Fecha de Registro:</label>
-                            <input type="date" class="form-control" id="fecha-registro">
+                            <input type="date" class="form-control" id="f_registro">
                         </div>
                         <div class="form-group">
                             <label for="fecha-vencimiento" class="col-form-label">Fecha de Vencimiento:</label>
-                            <input type="date" class="form-control" id="fecha-vencimiento">
+                            <input type="date" class="form-control" id="f_vencimiento">
                         </div>
                         <div class="form-group">
                             <label for="estado" class="col-form-label">Estado Renovacion:</label>
+                            <!--<select id="estado" name="estado">
+                                <option value="Activo" selected>Activo</option>
+                            </select>-->
                             <input type="text" class="form-control" id="estado">
                         </div>
                         <div class="form-group">
                             <label for="status" class="col-form-label">Status:</label>
+                            <!--<select id="status" name="status">
+                                <option value="Activo" selected>Activo</option>
+                                <option value="Pediente">Pendiente</option>
+                            </select>-->
                             <input type="text" class="form-control" id="status">
                         </div>
                     </div>
-                </form>
-
-                <div class="modal-footer">
+                    <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" id="btnGuardar" class="btn btn-primary">Guardar</button>
+                    <button type="submit" id="btnGuardar" class="btn btn-primary">Guardar</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>

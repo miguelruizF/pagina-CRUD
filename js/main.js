@@ -7,7 +7,7 @@ $(document).ready(function() {
             "url": "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
         },
         'ajax': {
-            'url': 'bd/crud.php',
+            'url': '../bd/crud.php',
             'method': 'POST',
             'data': { opcion: opcion },
             'dataSrc': ''
@@ -91,7 +91,7 @@ $(document).ready(function() {
         var respuesta = confirm("¿Estas seguro de borrar el registro " + id + "?");
         if (respuesta) {
             $.ajax({
-                url: "bd/crud.php",
+                url: "../bd/crud.php",
                 type: "POST",
                 datatype: "json",
                 data: { opcion: opcion, id: id },

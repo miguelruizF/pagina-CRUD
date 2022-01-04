@@ -32,9 +32,10 @@ switch ($opcion){
         break;
 
     case 3:
-        $consulta = "DELETE FROM licencias WHERE id_dominios = '$id'";
+        $consulta = "DELETE FROM licencias WHERE id_dominio = '$id'";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
+        $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
         break;
 
     case 4:

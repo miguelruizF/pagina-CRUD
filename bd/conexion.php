@@ -10,7 +10,7 @@ class Conexion{
             $conexion = new PDO("mysql:host=".servidor.";dbname=".nombre_bd, usuario,password,$opciones);
             return $conexion;
         }catch(Exception $e){
-            die("El error de Conexion es: ". $e->getMessage());
+            die("El error de Conexion es: ".$e->getMessage());
         }
     }
 }
